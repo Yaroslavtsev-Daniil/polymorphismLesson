@@ -6,6 +6,7 @@
 
         public Aphrodisiacs(string name, int price, string manufacturer, string composition)
         {
+            Category = "Афродизиаки";
             Name = name;
             Manufacturer = manufacturer;
             Price = price;

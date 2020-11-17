@@ -4,6 +4,7 @@
     {
         public AnalLube(string name, int price, string manufacturer)
         {
+            Category = "Для попы";
             Name = name;
             Manufacturer = manufacturer;
             Price = price;

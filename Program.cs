@@ -7,13 +7,15 @@ namespace SexShop
     {
         static void Main(string[] args)
         {
+            //Задем данные Покупателя
             User user = new User(
                 "Artem",
                 "Улица Пушкина, дом Колотушкина",
-                100000,
-                550
+                1500,
+                500
                 );
 
+            //Выводим список товаров топорным методом, но с учетом всех уникальных параметров типов.
             Console.WriteLine("Список товаров:");
 
             Dolls gusDolls = new Dolls(
@@ -22,14 +24,14 @@ namespace SexShop
                 "Гусыня",
                 "резина"
                 );
-
-            Console.WriteLine("Кукла:");
+            
+            Console.WriteLine("Категория: " + gusDolls.Category);
             Console.WriteLine("Название: " + gusDolls.Name);
             Console.WriteLine("Цена: " + gusDolls.Price);
-            Console.WriteLine("Производитель: " + gusDolls.Manufacturer);
+            Console.WriteLine("Проидитель: " + gusDolls.Manufacturer);
             Console.WriteLine("Материал: " + gusDolls.Material);
             Console.WriteLine(new String('-', 25));
-
+                     
             Condoms DirtyJoes = new Condoms(
                 "Грязный Джо",
                 400,
@@ -42,7 +44,7 @@ namespace SexShop
             Console.WriteLine("Цена: " + DirtyJoes.Price);
             Console.WriteLine("Производитель: " + DirtyJoes.Manufacturer);
             Console.WriteLine("Размер: " + DirtyJoes.Size);
-            Console.WriteLine(new String('-', 25));
+            Console.WriteLine(new String('-', 30));
 
             Aphrodisiacs HorsesAphrodisiacs = new Aphrodisiacs(
                 "Конский возбудитель",
@@ -51,14 +53,15 @@ namespace SexShop
                 "Любовь"
                 );
 
-            Console.WriteLine("Афродизиак:");
+            Console.WriteLine("Категория:" + HorsesAphrodisiacs.Category);
             Console.WriteLine("Название: " + HorsesAphrodisiacs.Name);
             Console.WriteLine("Цена: " + HorsesAphrodisiacs.Price);
             Console.WriteLine("Производитель: " + HorsesAphrodisiacs.Manufacturer);
             Console.WriteLine("Состав: " + HorsesAphrodisiacs.Composition);
             Console.WriteLine(new String('-', 25));
 
-            Aphrodisiacs FriendAphrodisiacs = new Aphrodisiacs("Завали Подругу",
+            Aphrodisiacs FriendAphrodisiacs = new Aphrodisiacs(
+                "Завали Подругу",
                 700,
                 "Мачо Индастриз",
                 "Клофелин, Спиртяга"
@@ -77,13 +80,12 @@ namespace SexShop
                 "Вазилинодельня #1"
                 );
 
-            Console.WriteLine("Афродизиак:");
+            Console.WriteLine("Смазка:");
             Console.WriteLine("Название: " + vasilin.Name);
             Console.WriteLine("Цена: " + vasilin.Price);
             Console.WriteLine("Производитель: " + vasilin.Manufacturer);
-            Console.WriteLine(new String('-', 25));
-
-
+            
+            //Создание архива продуктов для их совместной обработки
             Product[] products = new Product[] {
                 gusDolls,
                 DirtyJoes,
@@ -92,6 +94,19 @@ namespace SexShop
                 vasilin
             };
 
+            //Усовершенствованный вывод списка товаров, но без учета уникальных параметров типов
+            Console.WriteLine(new String('=', 40));
+            Console.WriteLine("\nПопытка перечислить продукты и вывести их инфу:");
+            for (int i = 0; i < products.Length; i++)
+                {
+                    Console.WriteLine();    
+                    Console.WriteLine($"Товар №{i+1}: {products[i].Name}\nКатегория: {products[i].Category}\nПроизводитель {products[i].Price}\nЦена {products[i].Price}");
+                    double price = products[i].GetDiscountPrice(user);
+                    Console.WriteLine($"Цена с учетом скидки {price}");
+                    Console.WriteLine(new String('-', 40));
+                }
+             
+            
             Informer informer = new Informer();
 
             while (true)
